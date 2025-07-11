@@ -7,7 +7,7 @@ import {
   IonTitle,
   IonContent,
   IonMenuButton,
-  IonButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { AuthService } from '../auth/services/auth.service';
 
@@ -16,11 +16,13 @@ import { AuthService } from '../auth/services/auth.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonTitle, IonButtons, IonToolbar, IonHeader, IonMenuButton],
+  imports: [IonIcon, IonContent, IonTitle, IonButtons, IonToolbar, IonHeader, IonMenuButton],
 })
 export class HomePage {
   private authService = inject(AuthService);
-  constructor(private menuCtrl: MenuController) {}
+  constructor(private menuCtrl: MenuController) {
+    this.openMenu();
+  }
 
   openMenu() {
     this.menuCtrl.open('start');
