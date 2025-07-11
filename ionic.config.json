@@ -1,0 +1,7 @@
+{
+  "name": "grupo-bothi-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
