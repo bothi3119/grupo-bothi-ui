@@ -1,12 +1,32 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonTitle,
+  IonContent,
+  IonMenuButton,
+  IonButton,
+} from '@ionic/angular/standalone';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  standalone: true,
+  imports: [IonButton, IonContent, IonTitle, IonButtons, IonToolbar, IonHeader, IonMenuButton],
 })
 export class HomePage {
-  constructor() {}
+  private authService = inject(AuthService);
+  constructor(private menuCtrl: MenuController) {}
+
+  openMenu() {
+    this.menuCtrl.open('start');
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
