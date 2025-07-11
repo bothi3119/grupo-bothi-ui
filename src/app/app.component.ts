@@ -20,6 +20,9 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/services/auth.service';
+import { addIcons } from 'ionicons';
+import { menu, home, settings, logOut, list } from 'ionicons/icons';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +47,7 @@ import { AuthService } from './auth/services/auth.service';
     RouterModule,
     IonMenu,
   ],
+  providers: [provideAnimations()],
 })
 export class AppComponent {
   private authService = inject(AuthService);
@@ -56,7 +60,7 @@ export class AppComponent {
 
   constructor() {
     this.platform.ready().then(() => {
-      console.log('soy app component');
+      addIcons({ menu, home, settings, logOut, list });
     });
   }
 

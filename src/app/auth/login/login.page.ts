@@ -61,7 +61,7 @@ export class LoginPage {
     this.authService.login(this.credentials()).subscribe({
       next: () => {
         this.isLoading.set(false);
-        location.assign('/home');
+        this.router.navigate(['/home']);
       },
       error: err => {
         this.isLoading.set(false);
