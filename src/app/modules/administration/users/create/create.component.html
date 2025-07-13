@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo Usuario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="first_name" type="text"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+        <span *ngIf="firstName?.errors?.['required']">Este campo es requerido</span>
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="floating">Segundo Nombre</ion-label>
+        <ion-input formControlName="middle_name" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellido Paterno <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="last_name" type="text"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="paternalSurname?.invalid && (paternalSurname?.dirty || paternalSurname?.touched)">
+        <span *ngIf="paternalSurname?.errors?.['required']">Este campo es requerido</span>
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="floating">Apellido Materno <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="second_last_name" type="text"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="maternalSurname?.invalid && (maternalSurname?.dirty || maternalSurname?.touched)">
+        <span *ngIf="maternalSurname?.errors?.['required']">Este campo es requerido</span>
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        <span *ngIf="email?.errors?.['required']">Este campo es requerido</span>
+        <span *ngIf="email?.errors?.['email']">Ingrese un email válido</span>
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="floating">Teléfono <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="phone" type="tel"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+        <span *ngIf="phone?.errors?.['required']">Este campo es requerido</span>
+        <span *ngIf="phone?.errors?.['pattern']">Formato incorrecto</span>
+      </ion-note>
+    </ion-list>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="cancel()" [disabled]="isLoading"> Cancelar </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="solid" color="primary" (click)="submit()" [disabled]="userForm.invalid || isLoading">
+        <span *ngIf="!isLoading">Guardar</span>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

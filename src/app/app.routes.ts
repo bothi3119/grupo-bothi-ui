@@ -16,22 +16,13 @@ export const routes: Routes = [
     loadComponent: () => import('./home/home.page').then(m => m.HomePage),
     canActivate: [AuthGuard],
   },
-  //   {
-  //     path: 'catalog',
-  //     canActivate: [AuthGuard],
-  //     children: [
-  //       {
-  //         path: '',
-  //         loadComponent: () => import('./modules/catalog/pages/list/list.page').then(m => m.ListPage),
-  //       },
-  //       {
-  //         path: 'create',
-  //         loadComponent: () => import('./modules/catalog/pages/create/create.page').then(m => m.CreatePage),
-  //       },
-  //       {
-  //         path: 'edit/:id',
-  //         loadComponent: () => import('./modules/catalog/pages/edit/edit.page').then(m => m.EditPage),
-  //       },
-  //     ],
-  //   },
+  {
+    path: 'admin',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/administration/administration.routes').then(m => m.ADMINISTRATION_ROUTES),
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];

@@ -6,7 +6,7 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { authInterceptorFn } from './app/auth/interceptors/auth.interceptor';
 import { errorInterceptorFn } from './app/auth/interceptors/error.interceptor';
@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptorFn, errorInterceptorFn])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptorFn, errorInterceptorFn])),
     importProvidersFrom(IonicModule.forRoot({})),
   ],
 });

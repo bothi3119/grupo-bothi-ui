@@ -8,15 +8,35 @@ import {
   IonContent,
   IonMenuButton,
   IonIcon,
+  IonCardTitle,
+  IonCardContent,
+  IonCard,
+  IonCardHeader,
+  IonButton,
 } from '@ionic/angular/standalone';
 import { AuthService } from '../auth/services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonContent, IonTitle, IonButtons, IonToolbar, IonHeader, IonMenuButton],
+  imports: [
+    IonButton,
+    IonCardHeader,
+    IonCard,
+    IonCardContent,
+    IonCardTitle,
+    IonIcon,
+    IonContent,
+    IonTitle,
+    IonButtons,
+    IonToolbar,
+    IonHeader,
+    IonMenuButton,
+    RouterModule,
+  ],
 })
 export class HomePage {
   private authService = inject(AuthService);

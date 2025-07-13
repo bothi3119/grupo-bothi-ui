@@ -1,15 +1,96 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" class="header-toolbar">
     <ion-buttons slot="start">
       <ion-menu-button class="menu-button" auto-hide="false">
         <ion-icon name="menu" slot="icon-only"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
-    <ion-title>Inicio</ion-title>
+    <ion-title class="header-title">Grupo Bothi</ion-title>
+    <div slot="end" class="header-shine"></div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h1>Bienvenido a la aplicación</h1>
-  <p>Usa el menú lateral para navegar entre las diferentes secciones.</p>
+<ion-content [fullscreen]="true" class="animated-content">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <img src="assets/logo.jpg" alt="Grupo Bothi" class="logo pulse-animation" />
+      <h1 class="hero-title slide-in-left">Expertos en <span class="highlight">Soluciones Integrales</span></h1>
+      <p class="hero-subtitle fade-in">Electricidad • Climatización • Plomería • Energía Solar</p>
+    </div>
+  </div>
+
+  <!-- Mission & Vision Cards -->
+  <div class="cards-container">
+    <!-- Mission Card -->
+    <ion-card class="mission-card float-animation">
+      <div class="card-corner"></div>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="construct-outline" class="card-icon"></ion-icon>
+          Nuestra Misión
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          Proporcionar soluciones especializadas en electricidad, climatización, plomería y energía solar, garantizando
+          instalaciones seguras, eficientes y sostenibles que optimicen el consumo energético y mejoren la calidad de
+          vida de nuestros clientes.
+        </p>
+        <div class="card-wave"></div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Vision Card -->
+    <ion-card class="vision-card float-animation delay-1">
+      <div class="card-corner"></div>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="flash-outline" class="card-icon"></ion-icon>
+          Nuestra Visión
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          Liderar la transición energética en nuestra región, siendo referentes en instalaciones eléctricas, sistemas de
+          climatización, soluciones de plomería e implementación de energía solar, con los más altos estándares de
+          calidad y sostenibilidad ambiental.
+        </p>
+        <div class="card-wave"></div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Values Section -->
+  <div class="values-section">
+    <h2 class="section-title">Nuestros Valores</h2>
+    <div class="values-grid">
+      <div class="value-item scale-animation">
+        <ion-icon name="shield-checkmark-outline" class="value-icon"></ion-icon>
+        <h3>Seguridad</h3>
+      </div>
+      <div class="value-item scale-animation delay-1">
+        <ion-icon name="leaf-outline" class="value-icon"></ion-icon>
+        <h3>Sostenibilidad</h3>
+      </div>
+      <div class="value-item scale-animation delay-2">
+        <ion-icon name="hardware-chip-outline" class="value-icon"></ion-icon>
+        <h3>Tecnología</h3>
+      </div>
+      <div class="value-item scale-animation delay-3">
+        <ion-icon name="thumbs-up-outline" class="value-icon"></ion-icon>
+        <h3>Calidad</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section fade-in-up">
+    <h2>¡Bienvenido de nuevo!</h2>
+    <ion-button shape="round" class="cta-button" [routerLink]="['/admin']" routerLinkActive="router-link-active">
+      Ir a Administración
+      <ion-icon slot="end" name="settings"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>

@@ -1,0 +1,86 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="container">
+    <div class="table-header">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Buscar usuarios..." [formControl]="searchControl" />
+        <span
+          *ngIf="searchControl.value"
+          nz-icon
+          nzType="close-circle"
+          nzTheme="fill"
+          class="clear-icon"
+          (click)="searchControl.reset('')"
+        ></span>
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <span nz-icon nzType="search"></span>
+      </ng-template>
+
+      <ion-button size="small" (click)="openCreateModal()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Agregar
+      </ion-button>
+    </div>
+
+    <div class="table-container">
+      <nz-table
+        #userTable
+        nzShowSizeChanger
+        nzBordered
+        [nzData]="users"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        [nzNoResult]="'Sin resultados'"
+        [nzFrontPagination]="true"
+        (nzPageIndexChange)="pageIndexChange($event)"
+        (nzPageSizeChange)="pageSizeChange($event)"
+      >
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th nzColumnKey="first_name">Nombre</th>
+            <th nzColumnKey="email">Email</th>
+            <th nzColumnKey="email">Télefono</th>
+            <th nzColumnKey="email">Fecha de creación</th>
+            <th nzColumnKey="role">Rol</th>
+            <th nzColumnKey="active">Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userTable.data">
+            <td>
+              <nz-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+            </td>
+            <td>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }} {{ user.second_last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.created_at | date : 'dd/MM/yyyy' }}</td>
+            <td>
+              <nz-badge [nzStatus]="getRoleBy(user.role, 'status')" [nzText]="getRoleBy(user.role, 'name')"></nz-badge>
+            </td>
+            <td>
+              <nz-switch
+                [ngModel]="user.active"
+                [nzCheckedChildren]="checkedTemplate"
+                [nzUnCheckedChildren]="unCheckedTemplate"
+                (ngModelChange)="activeUser($event, user.id)"
+              ></nz-switch>
+              <ng-template #checkedTemplate>✓</ng-template>
+              <ng-template #unCheckedTemplate>x</ng-template>
+            </td>
+            <td class="action-buttons">
+              <button nz-button nzType="text" class="edit-btn" (click)="editUser(user.id)">
+                <span nz-icon nzType="edit" nzTheme="outline"></span>
+              </button>
+              <button nz-button nzType="text" class="delete-btn" (click)="deleteUser(user.id)">
+                <span nz-icon nzType="delete" nzTheme="outline"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</ion-content>

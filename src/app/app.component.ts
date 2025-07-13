@@ -1,8 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterModule,
+  Event as RouterEvent,
+  NavigationCancel,
+} from '@angular/router';
 import {
   MenuController,
-  Platform,
   IonApp,
   IonRouterOutlet,
   IonHeader,
@@ -21,8 +28,40 @@ import {
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/services/auth.service';
 import { addIcons } from 'ionicons';
-import { menu, home, settings, logOut, list } from 'ionicons/icons';
+import {
+  menu,
+  home,
+  settings,
+  logOut,
+  list,
+  apps,
+  people,
+  business,
+  cube,
+  add,
+  refresh,
+  create,
+  trash,
+  heart,
+  close,
+  closeCircleOutline,
+  rocketOutline,
+  eyeOutline,
+  shieldCheckmarkOutline,
+  bulbOutline,
+  peopleOutline,
+  trophyOutline,
+  arrowForwardOutline,
+  constructOutline,
+  flashOutline,
+  leafOutline,
+  hardwareChipOutline,
+  thumbsUpOutline,
+  calculatorOutline,
+} from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { LoaderService } from './common/services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -46,21 +85,58 @@ import { provideAnimations } from '@angular/platform-browser/animations';
     IonRouterOutlet,
     RouterModule,
     IonMenu,
+    NzGridModule,
   ],
   providers: [provideAnimations()],
 })
 export class AppComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
-  private menuCtrl = inject(MenuController);
-  private platform = inject(Platform);
-
+  private loaderService = inject(LoaderService);
+  menuCtrl = inject(MenuController);
   catalogCount = signal(0);
   appVersion = '1.0.0';
 
   constructor() {
-    this.platform.ready().then(() => {
-      addIcons({ menu, home, settings, logOut, list });
+    this.addIconsItems();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loaderService.show();
+      }
+    });
+  }
+
+  protected addIconsItems() {
+    addIcons({
+      apps,
+      menu,
+      home,
+      settings,
+      logOut,
+      list,
+      people,
+      business,
+      cube,
+      add,
+      refresh,
+      create,
+      trash,
+      heart,
+      close,
+      closeCircleOutline,
+      rocketOutline,
+      eyeOutline,
+      shieldCheckmarkOutline,
+      bulbOutline,
+      peopleOutline,
+      trophyOutline,
+      arrowForwardOutline,
+      constructOutline,
+      flashOutline,
+      leafOutline,
+      hardwareChipOutline,
+      thumbsUpOutline,
+      calculatorOutline,
     });
   }
 

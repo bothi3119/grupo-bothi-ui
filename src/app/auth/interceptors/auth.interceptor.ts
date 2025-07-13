@@ -1,13 +1,15 @@
 import { inject } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpInterceptorFn, HttpHandlerFn } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { LoaderService } from '@app/common/services/loader.service';
 
 export const authInterceptorFn: HttpInterceptorFn = (
   req: HttpRequest<any>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
   const authToken = inject(AuthService).authToken();
+  const loaderService = inject(LoaderService);
   if (authToken) {
     req = req.clone({
       setHeaders: {
@@ -15,5 +17,10 @@ export const authInterceptorFn: HttpInterceptorFn = (
       },
     });
   }
+
+  if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT' || req.method === 'DELETE') {
+    loaderService.show('Procesando solicitud...');
+  }
+
   return next(req);
 };
