@@ -32,10 +32,10 @@ async function handleError(
   const errorMessage = getErrorMessage(error);
   await showToast(errorMessage, toastController);
 
-  if (error.status === 401) {
-    authService.logout();
-    router.navigate(['/login']);
-  }
+  // if (error.status === 401) {
+  //   authService.logout();
+  //   router.navigate(['/login']);
+  // }
 }
 
 function getErrorMessage(error: HttpErrorResponse): string {

@@ -10,6 +10,8 @@ export const authInterceptorFn: HttpInterceptorFn = (
 ): Observable<HttpEvent<any>> => {
   const authToken = inject(AuthService).authToken();
   const loaderService = inject(LoaderService);
+  const allowedMethods =
+    req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT' || req.method === 'DELETE';
   if (authToken) {
     req = req.clone({
       setHeaders: {
@@ -18,7 +20,7 @@ export const authInterceptorFn: HttpInterceptorFn = (
     });
   }
 
-  if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT' || req.method === 'DELETE') {
+  if (allowedMethods && !req.url.includes('/auth/login')) {
     loaderService.show('Procesando solicitud...');
   }
 

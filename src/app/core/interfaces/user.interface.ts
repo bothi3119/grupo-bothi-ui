@@ -33,3 +33,39 @@ export interface UserResponse {
   created_at: string;
   updated_at: string;
 }
+
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
+export interface SetPassword {
+  new_password: string;
+  new_password_confirmation: string;
+  token?: string;
+}
+
+export interface ResetPassword {
+  current_password: string;
+  new_password: string;
+  new_password_confirmation: string;
+}
+
+export interface UpdatePassword {
+  token: string;
+  new_password: string;
+  new_password_confirmation: string;
+}
+
+export interface PasswordResponse {
+  message: string;
+  user: UserResponse;
+}
+
+export interface Message {
+  message: string;
+}
+export interface LoginResponse {
+  token: string;
+  user: UserResponse;
+}

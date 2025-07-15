@@ -46,6 +46,8 @@ import {
   close,
   closeCircleOutline,
   rocketOutline,
+  eye,
+  eyeOff,
   eyeOutline,
   shieldCheckmarkOutline,
   bulbOutline,
@@ -62,6 +64,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { LoaderService } from './core/services/loader.service';
+import { Role } from './core/enums/role.enum';
 
 @Component({
   selector: 'app-root',
@@ -97,6 +100,11 @@ export class AppComponent {
   catalogCount = signal(0);
   appVersion = '1.0.0';
 
+  get superAdminRole(): boolean {
+    const role = this.authService.role() || localStorage.getItem('role');
+    return role === Role.SuperAdmin;
+  }
+
   constructor() {
     this.addIconsItems();
     this.router.events.subscribe(event => {
@@ -125,6 +133,8 @@ export class AppComponent {
       close,
       closeCircleOutline,
       rocketOutline,
+      eye,
+      eyeOff,
       eyeOutline,
       shieldCheckmarkOutline,
       bulbOutline,

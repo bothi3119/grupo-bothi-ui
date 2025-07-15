@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -21,7 +21,7 @@ import { AuthService } from '@app/auth/services/auth.service';
     ]),
   ],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
@@ -41,6 +41,10 @@ export class LoginPage {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    this.loginForm.reset();
   }
 
   togglePassword() {

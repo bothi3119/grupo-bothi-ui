@@ -37,11 +37,11 @@ export class UsersService {
   }
 
   editUser(userData: EditUser, user_id: number): Observable<UserResponse> {
-    return this.http.patch<UserResponse>(`${this.apiUrl}/${user_id}`, userData);
+    return this.http.put<UserResponse>(`${this.apiUrl}/${user_id}`, userData);
   }
 
   activeOrDeactive(user: { active: boolean }, user_id: number): Observable<UserResponse> {
-    return this.http.patch<UserResponse>(`${this.apiUrl}/${user_id}/active`, user);
+    return this.http.put<UserResponse>(`${this.apiUrl}/${user_id}/active`, user);
   }
 
   deleteUser(id: number): Observable<UserResponse> {
