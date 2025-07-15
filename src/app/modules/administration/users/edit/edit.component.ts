@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '@app/common/services/users.service';
+import { UsersService } from '@app/core/services/users.service';
 import { ModalController } from '@ionic/angular';
 import {
   IonHeader,

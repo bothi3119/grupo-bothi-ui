@@ -14,8 +14,8 @@ import {
   IonCardHeader,
   IonButton,
 } from '@ionic/angular/standalone';
-import { AuthService } from '../auth/services/auth.service';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@app/auth/services/auth.service';
 
 @Component({
   selector: 'app-home',

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '@app/auth/services/auth.service';
 
 @Component({
   selector: 'app-login',

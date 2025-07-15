@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpInterceptorFn, HttpHandlerFn } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { LoaderService } from '@app/common/services/loader.service';
+import { LoaderService } from '@app/core/services/loader.service';
 
 export const authInterceptorFn: HttpInterceptorFn = (
   req: HttpRequest<any>,

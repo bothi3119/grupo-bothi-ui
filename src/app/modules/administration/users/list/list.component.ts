@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { User } from '@app/common/interfaces/user.interface';
-import { UsersService } from '@app/common/services/users.service';
+import { User } from '@app/core/interfaces/user.interface';
+import { UsersService } from '@app/core/services/users.service';
 import { debounceTime, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { BaseTableComponent } from '@app/common/classes/base-table.component';
+import { BaseTableComponent } from '@app/core/classes/base-table.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';

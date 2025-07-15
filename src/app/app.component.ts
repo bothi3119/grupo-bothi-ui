@@ -61,7 +61,7 @@ import {
 } from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { LoaderService } from './common/services/loader.service';
+import { LoaderService } from './core/services/loader.service';
 
 @Component({
   selector: 'app-root',
